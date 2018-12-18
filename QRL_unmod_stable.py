@@ -102,13 +102,13 @@ for i in range(1, cycle+1):
     for j in range(1, i):
         qc.rz(-b[j],q[2])
         for k in range(1, j):
-            qc.rz(-b[j],q[0])
-            qc.rx(-a[j],q[0])
+            qc.rx(a[j],q[0])
+            qc.rz(b[j],q[0])
         qc.rx(a[j],q[0])
         qc.rz(b[j],q[0])
         for k in range(1, j):
-            qc.rx(a[j],q[0])
-            qc.rz(b[j],q[0])
+            qc.rz(-b[j],q[0])
+            qc.rx(-a[j],q[0])
         qc.rx(-a[j],q[2])
     
      #Copying env to registe
@@ -168,9 +168,9 @@ for i in range(1, cycle+1):
     qc2_state
     fidelity = state_fidelity(env, qc2_state)
     print('Fidelity = ' + str(state_fidelity(env, qc2_state)))
-    if((fidelity>=0.9)&(ofidelity <= 0.9)):
-        delta = pi/8
-    print('Delta = ' + str(delta))
+    #if((fidelity>=0.9)&(ofidelity <= 0.9)):
+    #    delta = pi/8
+    #print('Delta = ' + str(delta))
     ofidelity = fidelity
     #circuit_drawer(qc2)
     
